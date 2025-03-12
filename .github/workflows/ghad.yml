@@ -1,0 +1,16 @@
+name: "Newman Tests"
+
+on: [push, pull_request]
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: postman/newman:latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run API Tests with Newman
+        run: newman run "./Restful Booker BVT Team.postman_collection.json" -e "./Production Team.postman_environment.json"
